@@ -1,0 +1,46 @@
+// index.html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Blockchain CRUD App</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; }
+        .form-group { margin-bottom: 15px; }
+        input, textarea { width: 100%; padding: 8px; margin-top: 5px; }
+        button { padding: 10px 20px; background-color: #4CAF50; color: white; border: none; cursor: pointer; }
+        button:hover { background-color: #45a049; }
+        #itemsList { margin-top: 20px; }
+        .item { border: 1px solid #ddd; padding: 10px; margin-bottom: 10px; }
+    </style>
+</head>
+<body>
+    <h1>Blockchain CRUD App</h1>
+    
+    <div class="form-group">
+        <h2>Create New Item</h2>
+        <input type="text" id="itemName" placeholder="Item Name">
+        <textarea id="itemDescription" placeholder="Item Description"></textarea>
+        <button onclick="createItem()">Create Item</button>
+    </div>
+
+    <div class="form-group">
+        <h2>Update Item</h2>
+        <input type="number" id="updateId" placeholder="Item ID">
+        <input type="text" id="updateName" placeholder="New Name">
+        <textarea id="updateDescription" placeholder="New Description"></textarea>
+        <button onclick="updateItem()">Update Item</button>
+    </div>
+
+    <div class="form-group">
+        <h2>Delete Item</h2>
+        <input type="number" id="deleteId" placeholder="Item ID">
+        <button onclick="deleteItem()">Delete Item</button>
+    </div>
+
+    <h2>Items List</h2>
+    <div id="itemsList"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.7.4-rc.1/web3.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

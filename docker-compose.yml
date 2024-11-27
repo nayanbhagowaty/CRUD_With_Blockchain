@@ -1,0 +1,43 @@
+version: '3.8'
+services:
+  ganache:
+    image: trufflesuite/ganache:latest
+    ports:
+      - "8545:8545"
+    volumes:
+      - ganache_data:/data
+    command: 
+      - --server.host=0.0.0.0
+      - --chain.networkId=1337
+      - --wallet.defaultBalance=100
+      - --wallet.deterministic=true
+      - --database.dbPath=/data
+
+  truffle:
+    build:
+      context: .
+      dockerfile: Dockerfile.truffle
+    depends_on:
+      - ganache
+    volumes:
+      - ./:/app
+      - node_modules:/app/node_modules
+    environment:
+      - NETWORK_ID=1337
+      - RPC_URL=http://ganache:8545
+
+  webapp:
+    build:
+      context: .
+      dockerfile: Dockerfile.webapp
+    ports:
+      - "3000:80"
+    volumes:
+      - ./public:/usr/share/nginx/html
+    depends_on:
+      - ganache
+      - truffle
+
+volumes:
+  ganache_data:
+  node_modules:

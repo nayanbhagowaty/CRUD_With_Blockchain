@@ -1,0 +1,22 @@
+# Dockerfile.truffle
+FROM node:16-alpine
+
+WORKDIR /app
+
+# Install truffle globally
+RUN npm install -g truffle@5.8.1
+
+# Install dependencies
+COPY package*.json ./
+RUN npm install
+
+# Copy truffle configuration and contracts
+COPY truffle-config.js ./
+COPY contracts ./contracts
+COPY migrations ./migrations
+
+# Script to wait for Ganache and deploy contracts
+COPY deploy.sh ./
+RUN chmod +x deploy.sh
+
+CMD ["./deploy.sh"]
