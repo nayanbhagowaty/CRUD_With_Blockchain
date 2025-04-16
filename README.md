@@ -69,3 +69,5 @@ Smart Contract:
 Optional additions:
 - Custom domain: ~$10-15/year
 - SSL certificate: Free with Let's Encrypt
+
+<!-- GitAds-Verify: IQR5TX2VW22CMPBISFR4943B7ADSFYQ1 -->
